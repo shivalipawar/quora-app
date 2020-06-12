@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +10,60 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
+  loginForm: FormGroup;
+  loginToken :string;
   
-  constructor(private router :Router) { }
+  constructor(private router :Router,
+    private loginService : LoginService) { }
 
   ngOnInit() {
+    this.initializeFormControls();
+  }
+
+  initializeFormControls(){
+    this.loginForm = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl(''),
+    });
+  
   }
 
   register(){
     this.router.navigateByUrl('/register');
   }
 
-  login(){
+  getFormControls(){
+    return this.loginForm.controls;
+  }
+
+  submitForm(){
     if (this.loginForm.valid) {
-      alert("Login Success");
+      const loginUser = {
+        username:this.getUsername(),
+        password :this.getPassword()
+      }
+      console.log(JSON.stringify(loginUser));
+
+      this.loginService.login(loginUser).subscribe((res)=>{
+        console.log(res);
+        if(res){
+          this.loginToken = res.token;
+          alert("Login Success");
+        }else{
+          console.log("Login failed");
+        }
+      },err =>{
+        console.log("Error: "+err);
+        return err;
+      })
     }
+  }
+
+  private getPassword():string {
+    return this.getFormControls().password.value;
+  }
+
+  private getUsername():string {
+    return this.getFormControls().username.value;
   }
 }

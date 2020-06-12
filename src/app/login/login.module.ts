@@ -5,6 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SharedModule
   ],
   declarations: [LoginComponent, RegisterComponent]
 })
