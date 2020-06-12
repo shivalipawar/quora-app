@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginToken :string;
   
   constructor(private router :Router,
-    private loginService : LoginService) { }
+    private authService : LoginService) { }
 
   ngOnInit() {
     this.initializeFormControls();
@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   initializeFormControls(){
     this.loginForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
+      username: new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required]),
     });
   
   }
@@ -42,9 +42,8 @@ export class LoginComponent implements OnInit {
         username:this.getUsername(),
         password :this.getPassword()
       }
-      console.log(JSON.stringify(loginUser));
 
-      this.loginService.login(loginUser).subscribe((res)=>{
+      this.authService.login(loginUser).subscribe((res)=>{
         console.log(res);
         if(res){
           this.loginToken = res.token;
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit {
           console.log("Login failed");
         }
       },err =>{
-        console.log("Error: "+err);
+        console.log("Error: "+JSON.stringify(err));
         return err;
       })
     }
