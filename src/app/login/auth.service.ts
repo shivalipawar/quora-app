@@ -19,4 +19,8 @@ export class AuthService {
   register(user){
     return this.httpService.post(`http://localhost:3000/signup`,user);
   }
+  
+  forgotPassword(email){
+    return this.httpService.post(`http://localhost:3000/forgot-password`,email,'text/html');
+  }
 }

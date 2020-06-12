@@ -13,8 +13,8 @@ export class HTTPService {
     return this.HttpClient.get(url);
   }
 
-  post(url:string,data:any) : Observable<any>{
-    return this.HttpClient.post(url,data);
+  post(url:string,data:any,reponseType?:any) : Observable<any>{
+    return this.HttpClient.post(url,data,reponseType);
   }
 
   delete(url:string,data:any):Observable<any>{

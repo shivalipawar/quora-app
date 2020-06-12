@@ -6,6 +6,7 @@ import { MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/mater
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SharedModule } from '../shared/shared.module';
     MatFormFieldModule,
     SharedModule
   ],
-  declarations: [LoginComponent, RegisterComponent]
+  declarations: [LoginComponent, RegisterComponent,ForgotPasswordComponent]
 })
 export class AuthModule { }
