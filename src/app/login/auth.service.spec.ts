@@ -1,23 +1,23 @@
 import { TestBed, async } from '@angular/core/testing';
 
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 import { HTTPService } from '../shared/services/http.service';
 import { of } from 'rxjs';
 
 describe('LoginService', () => {
   let mockHttpService;
-  let service: LoginService;
+  let service: AuthService;
 
   beforeEach(() => {
     mockHttpService = jasmine.createSpyObj(['post','get']);
     TestBed.configureTestingModule({
       providers : [{provide : HTTPService, useValue:mockHttpService}]
     })
-    service = TestBed.get(LoginService);
+    service = TestBed.get(AuthService);
   });
 
   it('should be created', () => {
-    const service: LoginService = TestBed.get(LoginService);
+    const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
 

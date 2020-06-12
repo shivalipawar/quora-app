@@ -13,7 +13,7 @@ let routes: Routes = [];
 })
 export class AppRoutingModule {
    routes: Routes = [
-    { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule)},
+    { path: 'login', loadChildren: () => import('./login/auth.module').then(m => m.AuthModule)},
     // { path: '', component: LoginComponent},
     // { path: 'second-component',loadChildren: () => import('../login/login.module').then(m => m.LoginModule)  },
     

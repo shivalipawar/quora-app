@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
-import { LoginService } from '../login.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginToken :string;
   
   constructor(private router :Router,
-    private authService : LoginService) { }
+    private authService : AuthService) { }
 
   ngOnInit() {
     this.initializeFormControls();
@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
         if(res){
           this.loginToken = res.token;
           alert("Login Success");
+          this.loginForm.reset();
         }else{
           console.log("Login failed");
         }

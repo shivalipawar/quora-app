@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoginService } from '../login.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   signupForm: FormGroup;
 
   constructor(private router :Router,
-    private authService : LoginService) { }
+    private authService : AuthService) { }
 
   ngOnInit() {
     this.initializeFormControls();

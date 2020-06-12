@@ -4,7 +4,7 @@ import { HTTPService } from 'src/app/shared/services/http.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
 
   constructor(private httpService :HTTPService) { }
 
